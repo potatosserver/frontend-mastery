@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS 學習實作 IDE</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        /* 頂部控制欄 */
+        .toolbar {
+            background-color: #333;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #444;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .toolbar h1 {
+            font-size: 18px;
+            margin: 0;
+            color: #569cd6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .run-btn {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .run-btn:hover { background-color: #45a049; }
+        .run-btn:active { transform: scale(0.98); }
+
+        /* 主工作區 */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* 左側編輯器 */
+        .editor-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid #444;
+        }
+        .section-label {
+            background: #252526;
+            padding: 5px 15px;
+            font-size: 12px;
+            color: #858585;
+            text-transform: uppercase;
+            border-bottom: 1px solid #333;
+        }
+        #code-editor {
+            flex: 1;
+            background-color: #1e1e1e;
+            color: #ce9178;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 16px;
+            padding: 15px;
+            border: none;
+            resize: none;
+            outline: none;
+            line-height: 1.5;
+        }
+
+        /* 右側輸出區 */
+        .output-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #000;
+        }
+        #console-output {
+            flex: 1;
+            padding: 15px;
+            color: #b5cea8;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 15px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+        .error-text { color: #f44747; font-weight: bold; }
+        .system-text { color: #569cd6; font-style: italic; }
+    </style>
+</head>
+<body>
+
+    <div class="toolbar">
+        <h1><span>🚀</span> JS 學習實作 IDE</h1>
+        <button class="run-btn" onclick="runCode()">▶ 運行代碼</button>
+    </div>
+
+    <div class="main-container">
+        <div class="editor-section">
+            <div class="section-label">JavaScript Editor</div>
+            <textarea id="code-editor" spellcheck="false">
+// ⚡️ 在這裡開始寫你的 JS 代碼！
+
+let myName = "Andrew";
+let age = 25;
+
+print("你好, " + myName + "!");
+print("你的年齡是: " + age);
+
+// 試試看迴圈
+for(let i = 1; i <= 5; i++) {
+    print("這次是第 " + i + " 次執行");
+}
+
+print("--- 實驗結束 ---");</textarea>
+        </div>
+        <div class="output-section">
+            <div class="section-label">Console Output</div>
+            <div id="console-output">請點擊「運行代碼」開始執行...</div>
+        </div>
+    </div>
+
+    <script>
+        const outputDiv = document.getElementById('console-output');
+        const editor = document.getElementById('code-editor');
+
+        // 1. 定義 print 函數，讓學生能直接在輸出區看到結果
+        function print(message) {
+            const formattedMessage = typeof message === 'object' 
+                ? JSON.stringify(message, null, 2) 
+                : message;
+            
+            const line = document.createElement('div');
+            line.textContent = message;
+            
+            // 如果是物件，使用 pre 標籤保持格式
+            if (typeof message === 'object') {
+                line.innerHTML = `<pre style="color: #ce9178">${JSON.stringify(message, null, 2)}</pre>`;
+            } else {
+                line.textContent = message;
+            }
+            
+            outputDiv.appendChild(line);
+            outputDiv.scrollTop = outputDiv.scrollHeight; // 自動滾到最下方
+        }
+
+        // 2. 覆寫 console.log，讓原本的 log 也能輸出到畫面上
+        const originalLog = console.log;
+        console.log = function(...args) {
+            args.forEach(arg => print(arg));
+            originalLog.apply(console, args);
+        };
+
+        async function runCode() {
+            // 清空輸出區
+            outputDiv.innerHTML = '';
+            
+            const code = editor.value;
+            
+            // 建立一個執行環境，將 print 函數注入其中
+            try {
+                // 使用 new Function 封裝，比 eval 更安全且快
+                const execute = new Function('print', 'console', code);
+                execute(print, console);
+            } catch (err) {
+                // 捕捉語法錯誤並用紅色顯示
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-text';
+                errorDiv.textContent = '❌ 錯誤: ' + err.message;
+                outputDiv.appendChild(errorDiv);
+            }
+        }
+
+        // 支援 Ctrl+Enter 快速運行
+        editor.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                runCode();
+            }
+        });
+    </script>
+</body>
+</html>

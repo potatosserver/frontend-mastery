@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio | Your Name</title>
+</head>
+<body>
+    <!-- Hero Section: 核心自我介紹 -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about">關於我</a></li>
+                <li><a href="#works">作品集</a></li>
+                <li><a href="#contact">聯絡我</a></li>
+            </ul>
+        </nav>
+        <section id="hero">
+            <h1>你好，我是 [你的名字]</h1>
+            <p>一名專注於極簡主義與高性能的 <strong>前端開發工程師</strong>。</p>
+            <a href="#works" class="btn">查看我的作品</a>
+        </section>
+    </header>
+
+    <!-- About Section: 詳細介紹與技能 -->
+    <main>
+        <section id="about">
+            <h2>關於我</h2>
+            <p>我熱愛將複雜的邏輯轉化為簡單且優雅的用戶介面。目前專注於學習 HTML5, CSS3 與現代 JavaScript。</p>
+            
+            <h3>我的技術棧</h3>
+            <ul>
+                <li>HTML5 (語義化結構)</li>
+                <li>CSS3 (Flexbox / Grid / 響應式設計)</li>
+                <li>JavaScript (ES6+ / 異步處理)</li>
+                <li>Git & GitHub (版本控制)</li>
+            </ul>
+        </section>
+
+        <!-- Works Section: 作品展示區 -->
+        <section id="works">
+            <h2>我的作品集</h2>
+            <div class="works-grid">
+                <!-- 作品 1 -->
+                <article class="work-item">
+                    <img src="https://via.placeholder.com/300x200" alt="專案 A 預覽圖">
+                    <h3>專案 A：即時交通查詢網頁</h3>
+                    <p>使用 HTML/CSS 建立的靜態原型，實現了基礎的資訊呈現。</p>
+                    <a href="#">查看詳情</a>
+                </article>
+
+                <!-- 作品 2 -->
+                <article class="work-item">
+                    <img src="https://via.placeholder.com/300x200" alt="專案 B 預覽圖">
+                    <h3>專案 B：個人品牌網站</h3>
+                    <p>一個完全響應式的作品集網頁，對標極簡主義設計風格。</p>
+                    <a href="#">查看詳情</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Contact Section: 聯絡表單 -->
+        <section id="contact">
+            <h2>聯絡我</h2>
+            <p>如果你有有趣的項目或合作機會，歡迎隨時聯繫我！</p>
+            <form action="#" method="POST">
+                <div>
+                    <label for="name">姓名：</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="email">電子郵件：</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="message">訊息：</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit">發送訊息</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer: 頁尾資訊 -->
+    <footer>
+        <p>&copy; 2026 [你的名字]. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://github.com/">GitHub</a>
+            <a href="https://linkedin.com/">LinkedIn</a>
+        </div>
+    </footer>
+</body>
+</html>
