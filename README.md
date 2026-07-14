@@ -1,6 +1,6 @@
 # 🚀 Frontend Ultimate Mastery (前端工程終極精通)
 
-歡迎來到這套專為 **「工業級前端工程師」** 設計的學習體系。本課程不採取傳統的教科書模式，而是採用 **「產品導向 $\rightarrow$ 視覺感知 $\rightarrow$ 實戰驅動」** 的教學法。
+歡迎來到這套專為 **「工業級前端工程師」** 設計的學習體系。本課程不採取傳統的教科書模式，而是採用 **「產品導向 $\rightarrow$ 視覺感知 $\rightarrow$ 實作驅動」** 的教學法。
 
 ## 🎯 核心目標
 將一名初學者轉化為能夠獨立設計、開發並優化複雜 Web 應用的專業工程師。
@@ -16,7 +16,7 @@
 5. **工程封頂期**：`10-Engineering & QA` $\rightarrow$ `11-Performance`
 
 ## 🛠️ 快速開始
-1. 進入 [`/curriculum/00-The-Beginning`](./curriculum/00-The-Beginning/) 閱讀學習指南。
+1. 閱讀 **[學習指南](./curriculum/00-The-Beginning/00-How-to-Study.md)**，了解本課程的工業級學習法。
 2. 按照路徑順序，逐章完成實作挑戰。
 3. 在每個章節末尾點擊 **「🎯 本章解答」** 核對答案。
 

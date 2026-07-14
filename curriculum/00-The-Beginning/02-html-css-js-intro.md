@@ -63,3 +63,9 @@ JavaScript 是一門真正的 **「程式語言」**。它的作用是定義網�
 - **JS 部分 (邏輯)**：處理使用者的搜尋輸入 $\rightarrow$ 發送 API 請求 $\rightarrow$ 計算使用者與站點的距離 $\rightarrow$ 動態在畫面上增加或移除站點卡片。
 
 **如果你能分辨出一個網頁功能中哪些部分屬於 HTML、CSS 和 JS，你就已經準備好進入真正的開發階段了。**
+
+---
+
+<p align="center">
+<a href="01-what-is-the-web.md">01-what-is-the-web ⬅️</a> &nbsp; | &nbsp; <a href="03-how-to-ideate.md">03-how-to-ideate ➡️</a>
+</p>

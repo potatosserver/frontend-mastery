@@ -27,3 +27,9 @@
 ---
 
 **現在，請從 `00-How-to-Study.md` 開始你的旅程，然後進入 `01-HTML-Mastery/01-skeleton-and-encoding.md` 建立你的地基！**
+
+---
+
+<p align="center">
+<a href="03-how-to-ideate.md">03-how-to-ideate ⬅️</a> &nbsp; | &nbsp; <a href="../01-HTML-Mastery/01-skeleton-and-encoding.md">進入 01-HTML ➡️</a>
+</p>

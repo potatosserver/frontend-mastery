@@ -62,3 +62,9 @@
    - Response Headers 裡的 `Content-Type` 是什麼？ (應該是 `text/html`)
 
 **完成這個挑戰，你才真正理解了網頁是如何「運作」的。**
+
+---
+
+<p align="center">
+<a href="00-How-to-Study.md">00-How-to-Study ⬅️</a> &nbsp; | &nbsp; <a href="02-html-css-js-intro.md">02-html-css-js-intro ➡️</a>
+</p>
