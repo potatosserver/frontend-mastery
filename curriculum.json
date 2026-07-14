@@ -1,0 +1,109 @@
+{
+  "01-HTML-Mastery": {
+    "title": "HTML 骨架",
+    "files": [
+      { "id": "01-skeleton-and-encoding.md", "name": "骨架與編碼" },
+      { "id": "02-text-and-basic-tags.md", "name": "文本與基礎標籤" },
+      { "id": "03-forms-and-inputs.md", "name": "表單與輸入" },
+      { "id": "04-multimedia-and-tables.md", "name": "多媒體與表格" },
+      { "id": "05-semantics-and-a11y.md", "name": "語義化與無障礙" }
+    ]
+  },
+  "02-CSS-Mastery": {
+    "title": "CSS 視覺",
+    "files": [
+      { "id": "01-intro-and-selectors.md", "name": "選擇器入門" },
+      { "id": "02-box-model-and-units.md", "name": "盒子模型與單位" },
+      { "id": "03-positioning-and-zindex.md", "name": "定位與層級" },
+      { "id": "04-flexbox-practical.md", "name": "Flexbox 實戰" },
+      { "id": "05-grid-practical.md", "name": "Grid 實戰" },
+      { "id": "06-responsive-design.md", "name": "響應式設計" }
+    ]
+  },
+  "03-Design-Systems-M3": {
+    "title": "M3 設計系統",
+    "files": [
+      { "id": "01-m3-color-system.md", "name": "顏色系統" },
+      { "id": "02-m3-components.md", "name": "組件實作" },
+      { "id": "03-material-icons.md", "name": "視覺符號" },
+      { "id": "04-animation-physics.md", "name": "動畫物理學" }
+    ]
+  },
+  "04-JS-Mastery": {
+    "title": "JS 核心",
+    "files": [
+      { "id": "01-basics-and-variables.md", "name": "基礎與變數" },
+      { "id": "02-operators-and-control-flow.md", "name": "運算子與流程控制" },
+      { "id": "03-functions-and-scope.md", "name": "函數與作用域" },
+      { "id": "04-dom-manipulation-mastery.md", "name": "DOM 操作精通" },
+      { "id": "05-array-and-object-deep-dive.md", "name": "陣列與物件深潛" },
+      { "id": "06-async-and-promises.md", "name": "異步與 Promise" },
+      { "id": "07-engine-and-event-loop.md", "name": "引擎與事件循環" }
+    ]
+  },
+  "05-The-Art-of-F12-and-API": {
+    "title": "F12 與 API",
+    "files": [
+      { "id": "01-f12-mastery.md", "name": "F12 上帝模式" },
+      { "id": "02-api-sourcing-official.md", "name": "官方 API 獲取" },
+      { "id": "03-api-reverse-engineering.md", "name": "API 逆向工程" },
+      { "id": "04-cors-and-proxy.md", "name": "CORS 與代理" }
+    ]
+  },
+  "06-Browser-Capabilities": {
+    "title": "瀏覽器能力",
+    "files": [
+      { "id": "01-dom-performance.md", "name": "DOM 渲染性能" },
+      { "id": "02-browser-api-geo.md", "name": "地理位置 API" },
+      { "id": "03-web-storage-deep.md", "name": "網頁存儲深潛" },
+      { "id": "04-web-workers.md", "name": "Web Workers" },
+      { "id": "05-pwa-mastery.md", "name": "PWA 掌握指南" }
+    ]
+  },
+  "07-Network-and-Communication": {
+    "title": "網路通訊",
+    "files": [
+      { "id": "01-http-deep-dive.md", "name": "HTTP 深度剖析" },
+      { "id": "02-security-hardening.md", "name": "安全加固" },
+      { "id": "03-rest-vs-graphql.md", "name": "REST vs GraphQL" },
+      { "id": "04-realtime-comm.md", "name": "實時通訊" },
+      { "id": "05-map-engine-pro.md", "name": "地圖引擎實作" }
+    ]
+  },
+  "08-TypeScript-Era": {
+    "title": "TypeScript",
+    "files": [
+      { "id": "01-ts-intro.md", "name": "TS 啟蒙" },
+      { "id": "02-ts-types.md", "name": "類型深潛" },
+      { "id": "03-ts-config.md", "name": "配置模式" }
+    ]
+  },
+  "09-Modern-Framework-Architecture": {
+    "title": "框架架構",
+    "files": [
+      { "id": "01-framework-philosophy.md", "name": "框架哲學" },
+      { "id": "02-state-management.md", "name": "狀態管理" },
+      { "id": "03-component-patterns.md", "name": "組件模式" },
+      { "id": "04-routing-strategies.md", "name": "路由策略" },
+      { "id": "05-advanced-deployment.md", "name": "進階部署" }
+    ]
+  },
+  "10-Engineering-and-QA": {
+    "title": "工程與 QA",
+    "files": [
+      { "id": "01-tooling-vite-npm.md", "name": "工具鏈與環境" },
+      { "id": "02-testing-pyramid.md", "name": "測試金字塔" },
+      { "id": "03-jest-cypress-play.md", "name": "實作測試工具" },
+      { "id": "04-git-and-ci-cd.md", "name": "Git 與 CI/CD" }
+    ]
+  },
+  "11-Performance-and-Optimization": {
+    "title": "性能優化",
+    "files": [
+      { "id": "01-web-vitals.md", "name": "Core Web Vitals" },
+      { "id": "02-rendering-patterns.md", "name": "渲染模式" },
+      { "id": "03-bundle-optimization.md", "name": "包體優化" },
+      { "id": "04-memory-leak-debug.md", "name": "記憶體洩漏" }
+    ]
+  }
+}
