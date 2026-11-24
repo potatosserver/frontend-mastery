@@ -33,62 +33,6 @@
             overflow: hidden;
         }
 
-        #auth-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(254, 247, 255, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease, visibility 0.5s;
-        }
-
-        .auth-card {
-            background: white;
-            padding: 40px;
-            border-radius: var(--radius-lg);
-            box-shadow: 0 24px 48px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            border: 1px solid rgba(103, 80, 164, 0.1);
-        }
-
-        .auth-card h2 { margin: 0 0 12px; color: var(--md-sys-color-primary); font-weight: 700; }
-        .auth-card p { font-size: 0.9rem; color: var(--md-sys-color-outline); margin-bottom: 24px; }
-
-        .auth-input {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--md-sys-color-outline);
-            font-size: 0.9rem;
-            outline: none;
-            margin-bottom: 24px;
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .auth-input:focus { border-color: var(--md-sys-color-primary); box-shadow: 0 0 0 3px rgba(103, 80, 164, 0.15); }
-
-        .auth-btn {
-            width: 100%;
-            padding: 12px;
-            background: var(--md-sys-color-primary);
-            color: white;
-            border: none;
-            border-radius: 100px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 1rem;
-        }
-
-        .auth-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
-
         nav {
             width: 300px;
             background-color: var(--md-sys-color-surface-variant);
@@ -130,6 +74,7 @@
         .nav-group-header:hover { background-color: rgba(103, 80, 164, 0.08); }
         .nav-group-header .arrow { transition: transform 0.3s ease; font-size: 18px; }
         .nav-group.collapsed .nav-group-header .arrow { transform: rotate(-90deg); }
+        .nav-group.collapsed .nav-group-content { display: none; }
 
         .nav-group-content { display: flex; flex-direction: column; padding-left: 24px; margin-top: 4px; }
         .nav-item {
@@ -172,15 +117,6 @@
 </head>
 <body>
 
-    <div id="auth-overlay">
-        <div class="auth-card">
-            <h2>歡迎回來</h2>
-            <p>請輸入您的 GitHub PAT Token 以進入工業級 IDE</p>
-            <input type="password" id="github-token" class="auth-input" placeholder="ghp_xxxxxxxxxxxx">
-            <button class="auth-btn" onclick="submitToken()">進入學習空間</button>
-        </div>
-    </div>
-
     <nav id="sidebar">
         <div class="nav-header">
             <span class="material-symbols-outlined">school</span>
@@ -192,7 +128,7 @@
     <main>
         <div class="md-viewer" id="md-viewer">
             <h1>歡迎來到 IDE</h1>
-            <p>請先驗證身份，隨後從左側選擇章節開始學習...</p>
+            <p>請從左側選擇章節開始學習...</p>
         </div>
         <div class="playground">
             <div class="editor-container">
@@ -208,53 +144,18 @@
     </main>
 
     <script>
-        const GITHUB_USER = "potatosserver";
-        const GITHUB_REPO = "frontend-mastery";
-        const BRANCH = "master";
-        let currentToken = "";
-
-        function decodeBase64(encodedString) {
-            const cleaned = encodedString.replace(/\\n/g, '').replace(/\s+/g, '');
-            return decodeURIComponent(escape(window.atob(cleaned)));
-        }
-
-        async function submitToken() {
-            const token = document.getElementById('github-token').value.trim();
-            if (!token) return alert("請輸入 Token！");
-
-            try {
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/curriculum.json?ref=${BRANCH}`, {
-                    headers: { 'Authorization': `token ${token}` }
-                });
-                
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(`${errorData.message} (Status: ${response.status})`);
-                }
-                
-                currentToken = token;
-                const overlay = document.getElementById('auth-overlay');
-                overlay.style.opacity = '0';
-                overlay.style.visibility = 'hidden';
-                initNav();
-            } catch (e) {
-                alert("驗證失敗：" + e.message);
+        async function fetchLocalFile(path) {
+            const response = await fetch(path);
+            if (!response.ok) {
+                throw new Error(`Fetch failed: ${response.status} ${response.statusText}`);
             }
-        }
-
-        async function fetchGitHubFile(path) {
-            const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${path}?ref=${BRANCH}`, {
-                headers: { 'Authorization': `token ${currentToken}` }
-            });
-            if (!response.ok) throw new Error(`Fetch failed: ${response.status}`);
-            const dataObj = await response.json();
-            return decodeBase64(dataObj.content);
+            return await response.text();
         }
 
         async function initNav() {
             const navContent = document.getElementById('nav-content');
             try {
-                const jsonText = await fetchGitHubFile('curriculum.json');
+                const jsonText = await fetchLocalFile('curriculum.json');
                 const data = JSON.parse(jsonText);
                 navContent.innerHTML = '';
 
@@ -290,7 +191,7 @@
             const viewer = document.getElementById('md-viewer');
             viewer.innerHTML = '正在載入內容...';
             try {
-                const text = await fetchGitHubFile(`curriculum/${folder}/${file}`);
+                const text = await fetchLocalFile(`curriculum/${folder}/${file}`);
                 viewer.innerHTML = marked.parse(text);
             } catch (e) {
                 viewer.innerHTML = `<h1 style="color:red">載入失敗</h1><p>${e.message}</p>`;
@@ -304,6 +205,8 @@
             const preview = document.getElementById('preview');
             preview.srcdoc = `<!DOCTYPE html><html><head><style>${css}</style></head><body>${html}<script>${js}<\/script></body></html>`;
         }
+
+        document.addEventListener('DOMContentLoaded', initNav);
     </script>
 </body>
 </html>
